@@ -15,6 +15,7 @@ class OneATwoBGame:
 
         tk.Button(self.root, text="Guess", command=self.check_guess).pack()
         tk.Button(self.root, text="Reveal Answer", command=self.reveal_answer).pack()
+        tk.Button(self.root, text="Hint", command=self.hint).pack()
 
         self.rounds_text = tk.Text(self.root, height=10, width=50)
         self.rounds_text.pack()
@@ -37,7 +38,12 @@ class OneATwoBGame:
         if guess == self.secret_number:
             messagebox.showinfo("Congratulations", "You've guessed the correct number!")
             self.root.quit()
-    
+            
+    def hint(self):
+        hint_index = random.randint(0, 3)
+        hint_digit = self.secret_number[hint_index]
+        messagebox.showinfo("Hint", f"Hint: Secret number including {hint_digit}")
+
     def reveal_answer(self):
         messagebox.showinfo("Answer", f"The correct number is: {self.secret_number}")
     
